@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Vulnerable Shop - Login</title>
+</head>
+<body>
+    <h1>🔓 Vulnerable Shop Login</h1>
+    <p>Try these credentials:</p>
+    <ul>
+        <li>admin / 123</li>
+        <li>user1 / 123</li>
+        <li>user2 / 123</li>
+        <li>SQL Injection: ' OR '1'='1' --</li>
+    </ul>
+    
+    <form method="POST">
+        <input type="text" name="username" placeholder="Username" required>
+        <input type="password" name="password" placeholder="Password" required>
+        <button type="submit">Login</button>
+    </form>
+    
+    <h3>Test URLs:</h3>
+    <ul>
+        <li><a href="/api/users">/api/users</a> - Exposes all users (no auth)</li>
+        <li><a href="/user/1">/user/1</a> - IDOR vulnerability</li>
+        <li><a href="/admin">/admin</a> - Admin panel</li>
+    </ul>
+</body>
+</html>
