@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Vulnerable Shop</title>
+</head>
+<body>
+    <h1>🛍️ Vulnerable Online Shop</h1>
+    <p>Welcome, {{ username }}! | <a href="/logout">Logout</a></p>
+    
+    <h2>Products:</h2>
+    <div>
+        {% for product in products %}
+        <div style="border: 1px solid #ccc; padding: 10px; margin: 10px;">
+            <h3>{{ product.name }} - ${{ product.price }}</h3>
+            <p>{{ product.description }}</p>
+            <a href="/buy/{{ product.id }}">Buy Now</a>
+        </div>
+        {% endfor %}
+    </div>
+    
+    <h3>Exploit Links:</h3>
+    <ul>
+        <li><a href="/api/users">View All Users (API)</a></li>
+        <li><a href="/user/1">View User 1 Profile (IDOR)</a></li>
+        <li><a href="/user/2">View User 2 Profile (IDOR)</a></li>
+        <li><a href="/admin">Admin Panel</a></li>
+    </ul>
+    
+    <h3>SQL Injection Test:</h3>
+    <form action="/search">
+        <input type="text" name="q" placeholder="Search products...">
+        <button type="submit">Search</button>
+    </form>
+    <p>Try: <code>' UNION SELECT id,username,password,email FROM users--</code></p>
+</body>
+</html>
